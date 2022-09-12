@@ -13,21 +13,37 @@ video.pressed{display:block}
 </style>
 <body>
 	<video id="1" src="./video/video1.mp4" autoplay loop muted></video>
-	<video id="2" src="./video/video2.mp4" autoplay loop muted></video>
-	<video id="3" src="./video/video3.mp4" autoplay loop muted></video>
-	<video id="4" src="./video/video4.mp4" autoplay loop muted></video>
-	<video id="5" src="./video/video5.mp4" autoplay loop muted></video>
-	<video id="6" src="./video/video6.mp4" autoplay loop muted></video>
-	<video id="7" src="./video/video7.mp4" autoplay loop muted></video>
-	<video id="8" src="./video/video8.mp4" autoplay loop muted></video>
+	<video id="2" src="./video/video2.mp4" autoplay muted></video>
+	<video id="3" src="./video/video3.mp4" autoplay muted></video>
+	<video id="4" src="./video/video4.mp4" autoplay muted></video>
+	<video id="5" src="./video/video5.mp4" autoplay muted></video>
+	<video id="6" src="./video/video6.mp4" autoplay muted></video>
+	<video id="7" src="./video/video7.mp4" autoplay muted></video>
+	<video id="8" src="./video/video8.mp4" autoplay muted></video>
 </body>
 </html>
 <script>
+
+	var defaultVideo = document.getElementById("1");
+	if(defaultVideo) defaultVideo.classList.add('pressed');
+
+	document.querySelectorAll('video').forEach(item => {
+			item.onended = function() {
+				item.classList.remove('pressed');
+				var aud = document.getElementById("1");
+				if(aud) aud.classList.add('pressed');
+			};
+	})
+
 	window.addEventListener("keydown", e => {
 		document.querySelectorAll('video').forEach(item => {
 			item.classList.remove('pressed');
 		})
 		const key = document.getElementById(e.key);
-		if (key) key.classList.add('pressed');
+		if (key) 
+		{
+			key.classList.add('pressed');
+			key.play();
+		}
 	});
 </script>
