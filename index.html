@@ -1,65 +1,68 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>test</title>
-</head>
-<style>
-html,body{margin:0;padding:0;box-sizing:border-box;background-color:#000}
-video{display:none;width:100%;height:100vh;}
-video.pressed{display:block;animation:fadein 3s;-webkit-animation:fadein 3s;}
-@keyframes fadein{
-   from{
-      opacity:0;
-   }
-   to {
-      opacity:1;
-   }
-}
-@-webkit-keyframes fadein{
-   from{
-      opacity:0;
-   }
-   to {
-      opacity:1;
-   }
-}
-</style>
-<body>
-	<video id="1" src="./video/video1.mp4" autoplay loop muted></video>
-	<video id="2" src="./video/video2.mp4" autoplay muted></video>
-	<video id="3" src="./video/video3.mp4" autoplay muted></video>
-	<video id="4" src="./video/video4.mp4" autoplay muted></video>
-	<video id="5" src="./video/video5.mp4" autoplay muted></video>
-	<video id="6" src="./video/video6.mp4" autoplay muted></video>
-	<video id="7" src="./video/video7.mp4" autoplay muted></video>
-	<video id="8" src="./video/video8.mp4" autoplay muted></video>
-</body>
-</html>
-<script>
-
-	var defaultVideo = document.getElementById("1");
-	if(defaultVideo) defaultVideo.classList.add('pressed');
-
-	document.querySelectorAll('video').forEach(item => {
-			item.onended = function() {
-				item.classList.remove('pressed');
-				var aud = document.getElementById("1");
-				if(aud) aud.classList.add('pressed');
-			};
-	})
-
-	window.addEventListener("keydown", e => {
-		document.querySelectorAll('video').forEach(item => {
-			item.classList.remove('pressed');
-		})
-		const key = document.getElementById(e.key);
-		if (key) 
-		{
-			key.classList.add('pressed');
-			key.play();
-		}
-	});
-</script>
+<html lang="ko"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <style>
+    html,body{margin:0;padding:0;box-sizing:border-box;background-color:#000}
+    .video_wrapper {position: relative; width: 100%; height: 100vh;}
+    video{position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.3s linear;}
+    video.pressed{opacity: 1;}
+    /* @keyframes fadein{
+       from{
+          opacity:0;
+       }
+       to {
+          opacity:1;
+       }
+    }
+    @-webkit-keyframes fadein{
+       from{
+          opacity:0;
+       }
+       to {
+          opacity:1;
+       }
+    } */
+    </style></head>
+    
+    <body>
+        <div class="video_wrapper">
+            <video id="1" src="./video/video1.mp4" autoplay="" loop="" muted="" class="pressed"></video>
+            <video id="2" src="./video/video2.mp4" autoplay="" muted=""></video>
+            <video id="3" src="./video/video3.mp4" autoplay="" muted=""></video>
+            <video id="4" src="./video/video4.mp4" autoplay="" muted=""></video>
+            <video id="5" src="./video/video5.mp4" autoplay="" muted=""></video>
+            <video id="6" src="./video/video6.mp4" autoplay="" muted=""></video>
+            <video id="7" src="./video/video7.mp4" autoplay="" muted=""></video>
+            <video id="8" src="./video/video8.mp4" autoplay="" muted=""></video>
+        </div>
+    
+    
+    <script>
+    
+        var defaultVideo = document.getElementById("1");
+        if(defaultVideo) defaultVideo.classList.add('pressed');
+    
+        document.querySelectorAll('video').forEach(item => {
+                item.onended = function() {
+                    item.classList.remove('pressed');
+                    var aud = document.getElementById("1");
+                    if(aud) aud.classList.add('pressed');
+                };
+        })
+    
+        window.addEventListener("keydown", e => {
+            document.querySelectorAll('video').forEach(item => {
+                item.classList.remove('pressed');
+            })
+            const key = document.getElementById(e.key);
+            if (key) 
+            {
+                key.classList.add('pressed');
+                key.play();
+            }
+        });
+    </script>
+    </body>
+    </html>
